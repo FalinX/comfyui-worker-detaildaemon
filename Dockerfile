@@ -1,7 +1,8 @@
 # Studio photo worker: the official RunPod ComfyUI serverless worker + the custom nodes the studio uses.
-# Models stay on the network volume (sugrcq2pry); only the small face-detector model is baked in, because the
+# Same as production (worker-comfyui main, MODEL_TYPE flux1-dev-fp8 = the Flux checkpoint is IN the image). LoRAs/Qwen
+# come from the network volume (sugrcq2pry). The small face-detector model is baked in, because the
 # worker maps just the standard model folders from the volume.
-FROM runpod/worker-comfyui:5.10.0-base
+FROM runpod/worker-comfyui:5.10.0-flux1-dev-fp8
 
 # Face pass (FaceDetailer) = Impact Pack + Impact Subpack (UltralyticsDetectorProvider). Detail Daemon for later tests.
 RUN comfy-node-install comfyui-impact-pack comfyui-impact-subpack comfyui-detail-daemon
